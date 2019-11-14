@@ -1,35 +1,35 @@
-function varargout = GUI_JNER2020(varargin)
-% GUI_JNER2020 MATLAB code for GUI_JNER2020.fig
-%      GUI_JNER2020, by itself, creates a new GUI_JNER2020 or raises the existing
+function varargout = GUI_WalkTests(varargin)
+% GUI_WalkTests MATLAB code for GUI_WalkTests.fig
+%      GUI_WalkTests, by itself, creates a new GUI_WalkTests or raises the existing
 %      singleton*.
 %
-%      H = GUI_JNER2020 returns the handle to a new GUI_JNER2020 or the handle to
+%      H = GUI_WalkTests returns the handle to a new GUI_WalkTests or the handle to
 %      the existing singleton*.
 %
-%      GUI_JNER2020('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in GUI_JNER2020.M with the given input arguments.
+%      GUI_WalkTests('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in GUI_WalkTests.M with the given input arguments.
 %
-%      GUI_JNER2020('Property','Value',...) creates a new GUI_JNER2020 or raises the
+%      GUI_WalkTests('Property','Value',...) creates a new GUI_WalkTests or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before GUI_JNER2020_OpeningFcn gets called.  An
+%      applied to the GUI before GUI_WalkTests_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to GUI_JNER2020_OpeningFcn via varargin.
+%      stop.  All inputs are passed to GUI_WalkTests_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help GUI_JNER2020
+% Edit the above text to modify the response to help GUI_WalkTests
 
-% Last Modified by GUIDE v2.5 04-Nov-2019 14:40:49
+% Last Modified by GUIDE v2.5 13-Nov-2019 20:07:44
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @GUI_JNER2020_OpeningFcn, ...
-                   'gui_OutputFcn',  @GUI_JNER2020_OutputFcn, ...
+                   'gui_OpeningFcn', @GUI_WalkTests_OpeningFcn, ...
+                   'gui_OutputFcn',  @GUI_WalkTests_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -44,17 +44,17 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before GUI_JNER2020 is made visible.
-function GUI_JNER2020_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before GUI_WalkTests is made visible.
+function GUI_WalkTests_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to GUI_JNER2020 (see VARARGIN)
+% varargin   command line arguments to GUI_WalkTests (see VARARGIN)
 global flag_GRFCalibrated flag_subMass saved_grf_offsets saved_mass ...
     flag_ctrl_par ctrl_par
 
-% Choose default command line output for GUI_JNER2020
+% Choose default command line output for GUI_WalkTests
 handles.output = hObject;
 
 % Speedgoat setup
@@ -173,7 +173,7 @@ if flag_subMass
     set(handles.btn_tm_measure_mass, 'BackgroundColor', 'green');
     set(handles.axes_COM_KF, 'Color', 'white');
     setappdata(hObject, 'flag_plotCom', 1);
-    setparam(handles.tg, 'GUI/mass', 'Value', mass);    
+    setparam(handles.tg, 'GUI/mass', 'Value', mass);
 else
     mass = 80; % [kg]; only for initialization
 end
@@ -220,7 +220,7 @@ start(handles.timer_plots);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = GUI_JNER2020_OutputFcn(hObject, eventdata, handles) 
+function varargout = GUI_WalkTests_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -481,18 +481,14 @@ if i_grf >= n_grf
     
     setappdata(hObject, 'scale_fy_plot', scale_grf(2)/(mass*g));
     setappdata(hObject, 'scale_fz_plot', scale_grf(3)/(mass*g));
-
     
     flag_subMass = 1;
     saved_mass = mass;
     setparam(handles.tg, 'GUI/mass', 'Value', mass);
     
     % start com tracking
-    if strcmp(handles.timer_treadmillCtrl.Running, 'off')
-        set(handles.axes_COM_KF, 'Color', 'white');
-        start(handles.timer_treadmillCtrl);
-        setappdata(hObject, 'flag_plotCom', 1);
-    end
+    set(handles.axes_COM_KF, 'Color', 'white');
+    setappdata(hObject, 'flag_plotCom', 1);
 end
 
 setappdata(hObject, 'i_grf_for_mass', i_grf);
@@ -943,10 +939,6 @@ function btn_KF_reset_Callback(hObject, eventdata, handles)
 n_reset = getappdata(handles.output, 'n_reset');
 n_reset = n_reset + 1;
 setappdata(handles.output, 'n_reset', n_reset);
-
-if strcmp(handles.timer_treadmillCtrl.Running, 'off')
-    start(handles.timer_treadmillCtrl);
-end
 
 setparam(handles.tg, 'Treadmill_Ctrl/trackCOM_reset_trigger', 'Value', n_reset);
 
