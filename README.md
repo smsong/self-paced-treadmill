@@ -8,18 +8,18 @@
 
 This repository contains software that self-paces a force-instrumented treadmill to match walking (and running) speed.
 The self-pacing controller for a Bertec instrumented treadmill is implemented in Matlab/Simulink Real-Time and runs on a real-time target machine (Speedgoat) at 1000 Hz that communicates with a host computer (e.g. a desktop) in 100 Hz.
-The real-time target machine receives force-plate data from the treadmill, estimates subject speed and position based on the force data, and calculates desired treadmill speed adjustment command that is sent to the host computer.
+The real-time target machine receives force-plate data from the treadmill, estimates subject speed and position based on the force data, and calculates the desired treadmill speed adjustment command that is sent to the host computer.
 The host computer sends the speed adjustment command to the treadmill and interacts with a user through a graphical user interface.
-Here, we explain how to [modify the code to for your Speedgoat and Bertec instrumented treadmill setup](#modify-code-for-your-hardware-setup) and how to use two user interfaces: one for [a simple self-pacing function](#gui_spt) and the other to conduct [self-selected walking speed tests](#gui_walktests).
+Here, we explain how to [modify the code for your Speedgoat and Bertec instrumented treadmill setup](#modify-code-for-your-hardware-setup) and how to use two user interfaces: one for [a simple self-pacing function](#gui_spt) and the other to conduct [self-selected walking speed tests](#gui_walktests).
 
 
 ## Hardware setup
 You need to setup the system so that the real-time target machine can read treadmill's force data, and a host computer (e.g. a desktop) can communicate with the target machine and the treadmill.
-The remaining sections is described assuming you have the proper setup with a Speedgoat real-time target machine, a Bertec instrucmented treadmill, and a host computer with Matlab/Simulink Real-Time.
+The remaining sections are for a setup with a Speedgoat real-time target machine, a Bertec instrucmented treadmill, and a host computer with Matlab/Simulink Real-Time.
 
 
 ## Modify code
-The only part you need to changed is the Simulink code that reads force plate data.
+The only part you need to change is the Simulink code that reads force plate data.
 
 ![Simulink Speedgoat I/O](./doc/fig/simulink_Treadmill_SPT_Force-Plate_Data.png)
 
@@ -52,10 +52,10 @@ You can select one of the GUIs by setting:
 
 ![GUI SPT](./doc/fig/gui_spt.png)
 
-* `Set`: Set treadmill speed to value in 'target'
-* `Stop`: Stop treadmill
-* `Calibrate Sensor`: Zero the force-plate data. Make sure the no weight is on the treadmill. Button turns to green when done.
-* `Calibrate Mass`: Measure subject data. Make sure the subject is standing still on the treadmill. Button turns to green when done.
+* `Set`: Set the treadmill speed to value in `target`.
+* `Stop`: Stop the treadmill.
+* `Calibrate Sensor`: Zero the force-plate data. Make sure that no weight is on the treadmill. Button turns to green when done.
+* `Calibrate Mass`: Measure subject data. Make sure the subject is standing still on the treadmill. The button turns to green when done.
 * `Self-Paced Mode`: Start self-pacing controller. You can first make the subject walk at normal speed by the `Set` button then go to self-paced mode.
 * `Reset Tracking`: Reset subject speed and position tracking. Not recommended to reset during self-paced mode.
 * `Abort`: Abort software.
@@ -75,10 +75,10 @@ See [paper](#reference) for details on the tests.
 ![GUI WalkTests](./doc/fig/gui_walktests.png)
 
 * See [GUI_SPT](#gui_spt) for the common buttons.
-* `Mean p_off`: Measures average subject position while activated and prints it at the command window when finished (clicked again).
-* `Manual Speed Selection`: Treadmill speed will change once activated (clicked). Deactivated it (click it again) once the subject indicates the speed is faster/slower than comfortable speed.
-* `Self-Paced 2 min`: Treadmill goes to self-paced mode and relevant speed measures will be printed at eh command window. Deactivate it once the timer passes 2 minutes.
-* `Self-Paced 150 m`: Treadmill goes to self-paced mode and relevant speed measures will be printed at eh command window. A figure showing subject's position on a 150 m virtual track will show up. Deactivate it once the subject passes the finish line.
+* `Mean p_off`: Measures the average subject position while activated and prints it at the command window when finished (clicked again).
+* `Manual Speed Selection`: Treadmill speed will change once activated (clicked). Deactivated it (click it again) once the subject indicates the speed is faster/slower than a comfortable speed.
+* `Self-Paced 2 min`: Treadmill goes to the self-paced mode and relevant speed measures will be printed at eh command window. Deactivate it once the timer passes 2 minutes.
+* `Self-Paced 150 m`: Treadmill goes to the self-paced mode and relevant speed measures will be printed at eh command window. A figure showing subject position on a 150 m virtual track will show up. Deactivate it once the subject passes the finish line.
 * `Save`: Saves data in `your_filename.dat`.
 
 
@@ -87,4 +87,4 @@ See [paper](#reference) for details on the tests.
 
 ## Reference
 
-S Song, H Choi and SH Collins, Using force data to self-pace an instrumentedtreadmill and measure self-selected walking speed, in review.
+S Song, H Choi and SH Collins, Using force data to self-pace an instrumentedtreadmill and measure self-selected walking speed, *in preparation*.
