@@ -60,7 +60,7 @@ You can select one of the GUIs by setting:
 * `Reset Tracking`: Reset subject speed and position tracking. Not recommended to reset during self-paced mode.
 * `Abort`: Abort software.
 * `Self-Pacing Control Parameters` (see [paper](#reference) for details)
-    - `p_off`: Position offset. Eg: `p_off=-0.15` sets the default position 15 cm behind the center of the treadmill.
+    - `p_off`: Position offset (eg. `p_off=-0.15` sets the default position 15 cm behind the center of the treadmill)
     - `G_p`: Position gain
     - `G_v`: Velocity gain
     - `min v`: Minimum speed the self-pacing controller can set
