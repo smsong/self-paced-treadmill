@@ -1,6 +1,3 @@
-> [**Please fill out this survey**](https://docs.google.com/forms/d/1AhkLyk0r4jAx0c6DPpKsctpyo2noOiQ8uoqIybdXTvk/edit) if you are interested in using the self-pacing code.
-It will help us to maintain/develop self-pacing controllers that match your need.
-
 # Self-Paced Treadmill
 
 <p align="center">
