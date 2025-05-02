@@ -87,4 +87,4 @@ See [paper](#reference) for details on the tests.
 
 ## Reference
 
-S Song, H Choi and SH Collins, Using force data to self-pace an instrumentedtreadmill and measure self-selected walking speed, *in preparation*.
+Song, S., Choi, H., & Collins, S. H. (2020). Using force data to self-pace an instrumented treadmill and measure self-selected walking speed. Journal of NeuroEngineering and Rehabilitation. [link](https://link.springer.com/article/10.1186/s12984-020-00683-5)
